@@ -1,4 +1,6 @@
-import React from 'react-native'
+import React, {
+  Navigator,
+} from 'react-native'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux/native'
 import App from './containers/App'
@@ -12,7 +14,13 @@ export default class Root extends React.Component
   render(){
     return(
       <Provider store={store}>
-        {()=><App/>}
+        {()=><Navigator
+          initialRoute={{name:'首页', index:0, component:App}}
+          renderScene={(route, navigator)=>{
+            const Component = route.component;
+            return <Component route={route} navigator={navigator}/>
+          }}
+          />}
       </Provider>
     );
   }

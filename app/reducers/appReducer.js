@@ -1,5 +1,5 @@
 import Immutable from 'immutable'
-import { APP } from '../constants'
+import types from '../constants'
 
 const initialState = Immutable.fromJS({
   test:1
@@ -7,7 +7,7 @@ const initialState = Immutable.fromJS({
 
 export default function appReducer(state=initialState, action={}){
   switch (action.type){
-    case APP.TEST:
+    case types.TEST:
       return state.updateIn(['test'], value => 2)
     default:
       return state;

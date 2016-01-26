@@ -1,3 +1,7 @@
-import Enum from 'es6-enum'
+import keyMirror from 'fbjs/lib/keyMirror'
 
-export const APP = Enum('TEST')
+const types = keyMirror({
+  TEST: null
+});
+
+export default types;
