@@ -1,18 +1,39 @@
 import { StyleSheet } from 'react-native'
 
+const h = 56;
+
 const style = StyleSheet.create({
   header:{
-    height: 56,
+    height: h,
     backgroundColor: '#a5cb13',
-  },
-  inner:{
-    flex:1,
-    //alignItems:'flex-start'
-    flexDirection:'row'
+    flexDirection:'row',
+    alignItems:'center'
   },
   btn:{
-    width:56,
-    height:56,
+    height:h,
+    width:h,
+    justifyContent:'center',
+    alignItems:'center',
+    //backgroundColor:'rgba(0,0,0,0.5)'
+  },
+  left:{
+    width:230,
+    flexDirection:'row'
+  },
+  right:{
+    //alignSelf:'flex-end',
+    flexDirection:'row',
+    flex:1,
+    justifyContent:'flex-end',
+  },
+  ar:{
+    height:h,
+    width:h,
+    justifyContent:'center',
+    alignItems:'center',
+  },
+  btn_menu:{
+
   },
   btn_icon:{
     width: 32,
@@ -20,9 +41,14 @@ const style = StyleSheet.create({
   },
   menu_txt:{
     ///alignSelf:'flex-start',
-    height:56,
-    width:100,
-    justifyContent:'center'
+    height:h,
+    justifyContent:'center',
+
+  },
+  headerText: {
+    fontSize:16,
+    color:'white',
+    fontWeight:'600'
   }
 });
 
