@@ -1,10 +1,6 @@
 # CommerceReactNative
 
-<p>
-<img style="float:left;width:200px;" src="http://sxeca.org/images/reactnative/c1.jpg?v=1"/>
-<img style="float:left;width:200px;" src="http://sxeca.org/images/reactnative/c2.jpg?v=1"/>
-<img style="float:left;width:200px;" src="http://sxeca.org/images/reactnative/c3.jpg?v=1"/>
-</p>
+![demo](http://sxeca.org/images/reactnative/cc.jpg)
 
 > The project is still in highly development, and only tested in iPhone6s Simulator.
 
