@@ -8,7 +8,7 @@
 
 > The project is still in highly development, and only tested in iPhone6s Simulator.
 
-This is a [陕西电子商务](http://www.sxeca.org) App client, implemented using React Native. This project can run on both Android and iOS, with more than 80% of code in common. This is a demo project to show how to develop a complete app with React Native. (The data api is from sxeca.org website)
+This is a [Shaanxi Electronic Commerce](http://www.sxeca.org) App client, implemented using React Native. This project can run on both Android and iOS, with more than 80% of code in common. This is a demo project to show how to develop a complete app with React Native. (The data api is from sxeca.org website)
 
 ##### Current functionality:
 
