@@ -1,8 +1,20 @@
 
-import { testAction } from './app'
+import {
+  setCurrentMenuId,
+  setSlideImages,
+  setListData,
+  pendingListData,
+  fetchNewsList,
+  fetchCarouselImages,
+} from './appActions'
 
 const actions = {
-  testAction,
+  setCurrentMenuId,
+  setSlideImages,
+  setListData,
+  pendingListData,
+  fetchNewsList,
+  fetchCarouselImages,
 };
 
 export default actions;

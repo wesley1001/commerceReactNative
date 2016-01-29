@@ -11,6 +11,9 @@ const styles = StyleSheet.create({
     fontSize:14,
     color:'#333',
     padding:15,
+  },
+  webView:{
+    backgroundColor:'#ccc'
   }
 });
 

@@ -1,3 +1,5 @@
 export { default as Header } from './Header'
 export { default as MainCarousel } from './MainCarousel'
 export { default as NewsList } from './NewsList'
+export { default as DetailHeader } from './DetailHeader'
+export { default as DrawerContent } from './DrawerContent'

@@ -2,18 +2,23 @@ import React,{
   View,
   Text,
   Image,
+  TouchableOpacity,
 } from 'react-native'
 import Carousel from 'react-native-carousel'
 import Dimensions from 'Dimensions'
 import style from './style'
+import DetailView from '../../containers/DetailView'
 
-export default class MainCarousel extends React.Component
-{
-  constructor(props){
+/**
+ * 轮播图
+ */
+export default class MainCarousel extends React.Component {
+  constructor(props) {
     super(props)
   }
-  render(){
-    return(
+
+  render() {
+    return (
       <Carousel
         width={Dimensions.get('window').width}
         hideIndicators={false} // Set to true to hide the indicators
@@ -31,12 +36,17 @@ export default class MainCarousel extends React.Component
         style={{height:300}}
         >
 
-        {this.props.items.map((item, i)=>{
+        {this.props.items.map((item)=> {
           return (
-            <View style={style.container} key={'car_'+i}>
-              <Image style={style.image} source={{uri:item.img}}/>
-              <Text style={style.txt}>{item.title}</Text>
-            </View>
+            <TouchableOpacity
+              key={'cart_'+item.id}
+              onPress={()=>this.props.navigator.push({href:item.href,component:DetailView}) }
+              >
+              <View style={style.container} key={'car_'+item.id}>
+                <Image style={style.image} source={{uri:item.img}}/>
+                <Text style={style.txt}>{item.title}</Text>
+              </View>
+            </TouchableOpacity>
           )
         })}
 

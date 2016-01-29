@@ -1,7 +1,6 @@
 import Immutable from 'immutable'
 import types from '../constants'
-
-const surl = 'http://192.168.102.244/redux/commerce/src/images/muwu.jpg'
+import icons from '../assets/icons'
 
 //carouselImages:[
 //  {id:1,img:surl,href:'',title:''},
@@ -19,54 +18,46 @@ const surl = 'http://192.168.102.244/redux/commerce/src/images/muwu.jpg'
 
 
 const initialState = Immutable.fromJS({
-  test:1,
   //当前菜单ID
   currentMenuId:1,
+  menuItems : {
+    1:{id:1, title:'首页'},
+    2:{id:2, title:'电商资讯'},
+    3:{id:3, title:'专家专栏'},
+    4:{id:4, title:'数据报告'},
+    5:{id:5, title:'会议培训'},
+    7:{id:7, title:'创业融资'},
+  },
   //轮播图片
   carouselImages:[
-    {id:1,img:surl,href:'',title:'我们都不想当炮灰..但炮灰还可以这样'},
-    {id:1,img:surl,href:'',title:'银行的人看哭了这些都是媒体对银行的误读'},
-    {id:1,img:surl,href:'',title:'昨晚被玩出花样的微信红包照片功能这个值得看'}
+    {id:1,img:icons.default,href:'',title:''},
   ],
   //ID对应资讯列表
-  newsList_1:{page:1,perPage:5, lists:[
-    {
-      id:1,img:surl,
-      title:'务会议解读：扩大跨境电子商务综合读：扩大跨境电子商务综合读：扩大跨境电子商务综合读：扩大跨境电子商务综合试点 赢得外贸新优势',
-      des:"6日召开的国务院常务会议决定，将先行试点的中国（杭州）跨境电子商务综合试验区初步探索出的相关政策体系和管理制度，向更大范围推广。"
-    },
-    {
-      id:1,img:surl,
-      title:'务会议解读：扩大跨境电子商务综合试点 赢得外贸新优势',
-      des:"6日召开的国务院常务会议决定，将先行试点的中国（杭州）跨境电子商务综合试验区初步探索出的相关政策体系和管理制度，向更大范围推广。"
-    },
-    {
-      id:1,img:surl,
-      title:'务会议解读：扩大跨境电子商务综合试点 赢得外贸新优势',
-      des:"6日召开的国务院常务会议决定，将先行试点的中国（杭州）跨境电子商务综合试验区初步探索出的相关政策体系和管理制度，向更大范围推广。"
-    },
-    {
-      id:1,img:surl,
-      title:'务会议解读：扩大跨境电子商务综合试点 赢得外贸新优势',
-      des:"6日召开的国务院常务会议决定，将先行试点的中国（杭州）跨境电子商务综合试验区初步探索出的相关政策体系和管理制度，向更大范围推广。"
-    },
-    {
-      id:1,img:surl,
-      title:'务会议解读：扩大跨境电子商务综合试点 赢得外贸新优势',
-      des:"6日召开的国务院常务会议决定，将先行试点的中国（杭州）跨境电子商务综合试验区初步探索出的相关政策体系和管理制度，向更大范围推广。"
-    },
-    {
-      id:1,img:surl,
-      title:'务会议解读：扩大跨境电子商务综合试点 赢得外贸新优势',
-      des:"6日召开的国务院常务会议决定，将先行试点的中国（杭州）跨境电子商务综合试验区初步探索出的相关政策体系和管理制度，向更大范围推广。"
-    }
-  ]}
+  newsList_1:{page:1,perPage:10, list:[]},
+  newsList_2:{page:1,perPage:10, list:[]},
+  newsList_3:{page:1,perPage:10, list:[]},
+  newsList_4:{page:1,perPage:10, list:[]},
+  newsList_5:{page:1,perPage:10, list:[]},
+  newsList_6:{page:1,perPage:10, list:[]},
 })
 
 export default function appReducer(state=initialState, action={}){
   switch (action.type){
-    case types.TEST:
-      return state.updateIn(['test'], value => 2)
+    //改变当前menuid
+    case types.SET_CURRENT_MENU_ID:
+      return state.updateIn(['currentMenuId'], value => action.menuId);
+    //设置图片
+    case types.SET_SLIDE_IMAGES:
+      return state.setIn(['carouselImages'],Immutable.fromJS(action.images));
+    //重置资讯列表
+    case types.SET_NEWS_LIST_DATA:
+      return state.setIn(['newsList_'+action.menuId], Immutable.fromJS(action.data));
+    //加载更多数据
+    case types.PENDING_NEWS_LIST_DATA:
+      var newState = state.setIn(['newsList_'+action.menuId, 'page'], action.data.page);
+      newState = newState.setIn(['newsList_'+action.menuId, 'perPage'], action.data.perPage);
+      return newState.updateIn(['newsList_'+action.menuId, 'list'],
+          list=>list.concat(action.data.list));
     default:
       return state;
   }
