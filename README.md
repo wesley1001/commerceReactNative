@@ -14,7 +14,7 @@ This is a [陕西电子商务](http://www.sxeca.org) App client, implemented usi
 
   * fetch news list and read new detail
 
-## Technology related
+## Technologies related
 
   * Immutable.js
   * react-redux
