@@ -32,6 +32,11 @@ This is a [Shaanxi Electronic Commerce](http://www.sxeca.org) App client, implem
 4. Message center
 5. Share/digg/favorite
 
+## THANKS TO
+
+* [ZhiHuDaily-React-Native](https://github.com/race604/ZhiHuDaily-React-Native)
+* [react-native-nba-app](https://github.com/wwayne/react-native-nba-app)
+
 ## License
 
 MIT
