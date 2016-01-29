@@ -55,7 +55,7 @@ export default class DrawerContent extends React.Component
 
         <View style={style.headw}>
           <View style={style.headimgw}>
-            <Image style={style.headimg}/>
+            <Image style={style.headimg} source={{uri:icons.default}}/>
           </View>
           <Text style={style.username}>MeanOfWind</Text>
         </View>

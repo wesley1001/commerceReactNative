@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native'
+import {StyleSheet, Platform} from 'react-native'
 import Dimensions from 'Dimensions'
 
 const w = Dimensions.get('window');
@@ -8,7 +8,7 @@ const style = StyleSheet.create({
   container:{
     backgroundColor:'rgba(0,0,0,0.7)',
     height:w.height,
-    marginTop:20
+    marginTop:Platform.OS == 'ios' ? 20 : 0,
   },
   inner:{
     width:w.width-offset,

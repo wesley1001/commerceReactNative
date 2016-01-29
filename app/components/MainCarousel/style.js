@@ -14,13 +14,16 @@ const style = StyleSheet.create({
     width:w,
     height:h,
   },
-  txt:{
-    fontSize:22,
+  txtw:{
     position:'absolute',
     bottom:20,
     left:0,
     paddingLeft:15,
     paddingRight:15,
+    justifyContent:'center',
+  },
+  txt:{
+    fontSize:22,
     color:'#fff'
   }
 });

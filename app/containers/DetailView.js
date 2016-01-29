@@ -8,7 +8,8 @@ import {bindActionCreators} from 'redux'
 import * as actionCreators from '../actions'
 
 import {
-  DetailHeader
+  DetailHeader,
+  StatusBar,
 } from '../components'
 
 import styles from '../assets/styles'
@@ -34,6 +35,7 @@ class DetailView extends React.Component
   render(){
     return(
       <View style={styles.container}>
+        <StatusBar />
         <DetailHeader
           route={this.props.route}
           navigator={this.props.navigator}

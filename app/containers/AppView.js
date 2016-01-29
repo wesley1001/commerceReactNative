@@ -15,6 +15,7 @@ import {
   MainCarousel,
   NewsList,
   DrawerContent,
+  StatusBar,
 } from '../components'
 
 import actionCreators from '../actions'
@@ -89,11 +90,13 @@ class AppView extends React.Component
           />}
         >
         <View style={styles.container}>
+          <StatusBar />
           <Header
             openDrawer={this.openDrawer.bind(this)}
             currentMenuId={this.props.currentMenuId}
             menuItems={this.props.menuItems}
             />
+
           <ScrollView
             ref="scrollView"
             onScroll={this.onScroll.bind(this)}
@@ -132,7 +135,9 @@ class AppView extends React.Component
             items={this.props.carouselImages}
             navigator={this.props.navigator}
             />
-          <Text style={styles.hotRecommend}>热门推荐</Text>
+          <View style={styles.hotRecommendw}>
+            <Text style={styles.hotRecommend}>热门推荐</Text>
+          </View>
         </View>
       )
     }

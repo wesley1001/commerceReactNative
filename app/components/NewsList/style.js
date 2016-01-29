@@ -30,6 +30,7 @@ const style = StyleSheet.create({
     marginBottom:8,
     marginTop:5,
     lineHeight:23,
+    textAlign:'auto',
     color:'#333'
   },
   des:{

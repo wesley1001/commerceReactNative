@@ -44,7 +44,9 @@ export default class MainCarousel extends React.Component {
               >
               <View style={style.container} key={'car_'+item.id}>
                 <Image style={style.image} source={{uri:item.img}}/>
-                <Text style={style.txt}>{item.title}</Text>
+                <View style={style.txtw}>
+                  <Text style={style.txt}>{item.title}</Text>
+                </View>
               </View>
             </TouchableOpacity>
           )
