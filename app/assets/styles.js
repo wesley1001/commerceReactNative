@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
   },
   webView:{
     backgroundColor:'#ccc'
-  }
+  },
+
 });
 
 export default styles;

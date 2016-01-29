@@ -7,6 +7,7 @@ import React,{
 } from 'react-native'
 import style from './style'
 import DetailView from '../../containers/DetailView'
+import icons from '../../assets/icons'
 
 
 /**
@@ -34,6 +35,7 @@ export default class NewsList extends React.Component
       <ListView
         dataSource={this.state.dataSource}
         renderRow={this.renderRow.bind(this)}
+        renderFooter={this.renderFooter.bind(this)}
         style={style.listView}
         />
     );
@@ -48,6 +50,14 @@ export default class NewsList extends React.Component
           </View>
         </View>
       </TouchableOpacity>
+    )
+  }
+  renderFooter(){
+    return(
+      <View style={style.footer}>
+        <Image source={{uri:icons.loading}} style={style.footer_icon}/>
+        <Text style={style.footer_txt}>正在载入...</Text>
+      </View>
     )
   }
   _onPress( href){

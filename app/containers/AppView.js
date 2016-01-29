@@ -1,12 +1,14 @@
 import React,{
   View,
   Text,
+  Image,
   ScrollView,
   RefreshControl,
 } from 'react-native'
 import {connect} from 'react-redux/native'
 import {bindActionCreators} from 'redux'
 import Drawer from 'react-native-drawer'
+import Dimensions from 'Dimensions'
 
 import {
   Header,
@@ -46,28 +48,31 @@ class AppView extends React.Component
   constructor(props){
     super(props)
     this.state = {
+      wheight: Dimensions.get('window').height,
       isRefreshing: false,
       loadingTitle: '下拉刷新',
-      loaded: 0,
-      rowData: Array.from(new Array(20)).map(
-        (val, i) => ({text: 'Initial row ' + i, clicks: 0})),
+      canLoading:true,
     }
 
     //初始化数据请求
     props.actions.fetchCarouselImages()
     props.actions.fetchNewsList(props.currentMenuId, 1, props.newsList.perPage)
+      .then((data)=>1)
+      .catch(error=>console.log(error))
   }
   componentDidMount(){
     //console.log(this)
   }
   componentWillReceiveProps(props){
+    let {currentMenuId, newsList} = props;
     //菜单切换并且当前没有数据
-    if(this.props.currentMenuId != props.currentMenuId
-      && props.newsList.list.length==0
-    ){
-      props.actions.fetchNewsList(props.currentMenuId, 1, props.newsList.perPage)
+    if(this.props.currentMenuId != currentMenuId && newsList.list.length==0 ){
+      props.actions.fetchNewsList(currentMenuId, 1, newsList.perPage)
+        .then((data)=>1)
+        .catch(error=>console.log(error))
     }
   }
+
   render(){
 
     return(
@@ -90,6 +95,9 @@ class AppView extends React.Component
             menuItems={this.props.menuItems}
             />
           <ScrollView
+            ref="scrollView"
+            onScroll={this.onScroll.bind(this)}
+            scrollEventThrottle={200}
             refreshControl={
               <RefreshControl
                 refreshing={this.state.isRefreshing}
@@ -130,23 +138,39 @@ class AppView extends React.Component
     }
     return <View style={{height:10}}></View>
   }
+  onScroll(e){
+    let h = this.state.wheight;
+    let contentHeight = e.nativeEvent.contentSize.height;
+    //当前位置
+    let offsetY = e.nativeEvent.contentOffset.y;
+    //最大偏移量
+    let maxScroll = contentHeight-h+20+56 - 20;
+    if(offsetY>maxScroll && this.state.canLoading){
+      this.setState({canLoading:false})
+      this.loadingMore();
+    }
+  }
+  //下拉刷新处理
   _onRefresh() {
+    let {currentMenuId, newsList} = this.props;
     this.setState({isRefreshing: true});
-    setTimeout(() => {
-      // prepend 10 items
-      const rowData = Array.from(new Array(10))
-        .map((val, i) => ({
-          text: 'Loaded row ' + (+this.state.loaded + i),
-          clicks: 0,
-        }))
-        .concat(this.state.rowData);
-
-      this.setState({
-        loaded: this.state.loaded + 10,
-        isRefreshing: false,
-        rowData: rowData,
-      });
-    }, 3000);
+    //更新资讯
+    this.props.actions.fetchNewsList(currentMenuId, 1, newsList.perPage)
+      .then((data)=>{
+        //console.log(this)
+        this.setState({isRefreshing: false});
+      })
+      .catch(error=>console.log(error))
+  }
+  //加载更多处理
+  loadingMore(){
+    let {currentMenuId, newsList} = this.props;
+    this.props.actions.fetchNewsList(currentMenuId, newsList.page, newsList.perPage)
+      .then((data)=>{
+        //console.log(this)
+        this.setState({canLoading: true});
+      })
+      .catch(error=>console.log(error))
   }
   openDrawer(){
     this.refs.drawer.open();

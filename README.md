@@ -22,8 +22,8 @@ This is a [Shaanxi Electronic Commerce](http://www.sxeca.org) App client, implem
 
 ## TODO
 
-1. Pull to refresh current news list
-2. Scroll end load more data from server
+1. ~~Pull to refresh current news list~~ (done)
+2. ~~Scroll end load more data from server~~ (done)
 3. User login/logout
 4. Message center
 5. Share/digg/favorite

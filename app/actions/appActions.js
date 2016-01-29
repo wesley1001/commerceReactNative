@@ -58,18 +58,23 @@ export function fetchNewsList(menuId=1, page=1, perPage=5){
   //生成请求链接
   let url = urls.listUrl + `?menuId=${menuId}&page=${page}&perPage=${perPage}`;
   return (dispatch)=>{
-    return fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        if(page==1){
-          dispatch(setListData(menuId, data))
-        }else{
-          dispatch(pendingListData(menuId, data))
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    return new Promise((resolve, reject)=>{
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          if(page==1){
+            dispatch(setListData(menuId, data))
+          }else{
+            dispatch(pendingListData(menuId, data))
+          }
+          resolve(data)
+        })
+        .catch((error) => {
+          console.error(error);
+          reject(error)
+        });
+    })
+
   }
 }
 

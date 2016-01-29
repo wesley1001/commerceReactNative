@@ -29,12 +29,26 @@ const style = StyleSheet.create({
     overflow:'hidden',
     marginBottom:8,
     marginTop:5,
-    textAlign:'justify',
     lineHeight:23,
     color:'#333'
   },
   des:{
 
+  },
+  footer:{
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'center',
+    height:40,
+  },
+  footer_icon:{
+    width:20,
+    height:20
+  },
+  footer_txt:{
+    fontSize:14,
+    color:'#999',
+    marginLeft:10,
   }
 });
 
